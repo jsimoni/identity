@@ -2,9 +2,9 @@ name: 'Terraform GitHub Actions'
 on:
   push:
     branches:
-      - loop-accounts
+      - master
 #    paths-ignore:
-#      - '.github/**'
+      - '.github/**'
 
 env:
   tf_working_dir: '/applied/accounts/.'
