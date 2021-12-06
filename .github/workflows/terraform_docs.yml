@@ -1,0 +1,25 @@
+name: 'Generate Terraform docs'
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '.github/**'
+env:
+  tf_working_dir: '.'
+jobs:
+  docs:
+    name: 'Terraform Docs'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: 'Render terraform docs inside the USAGE.md and push changes back to PR branch'
+        uses: Dirrk/terraform-docs@v1.0.7
+        with:
+          tf_docs_working_dir: ${{ env.tf_working_dir }}
+          tf_docs_output_file: USAGE.md
+          tf_docs_output_method: inject
+          tf_docs_git_push: true

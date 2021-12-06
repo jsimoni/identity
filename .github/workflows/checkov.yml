@@ -1,0 +1,20 @@
+name: 'Checkov Security Scan'
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '.github/**'
+env:
+  tf_working_dir: '.'
+jobs:
+  checkov-job:
+    name: 'checkov-action'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Checkov Security Analysis'
+        uses: bridgecrewio/checkov-action@v9
+        with:
+          directory: ${{ env.tf_working_dir }}
