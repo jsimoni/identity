@@ -1,0 +1,6 @@
+# These variables apply to this entire environment. They are automatically pulled in using yamldecode and merged into
+# the inputs of the root terragrunt.hcl file.
+aws_environment: "prod"
+aws_account_id: "452012047556"
+aws_account_alias: "personal-audit"
+aws_account_stage: "prod"
