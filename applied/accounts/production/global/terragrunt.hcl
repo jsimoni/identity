@@ -6,10 +6,6 @@ include "root" {
   path = find_in_parent_folders()
 }
 
-dependency "network" {
-  config_path = "./network"
-}
-
 dependency "iam" {
   config_path = "./iam"
 }
