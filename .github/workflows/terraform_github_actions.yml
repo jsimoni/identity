@@ -2,9 +2,14 @@ name: 'Terraform GitHub Actions'
 on:
   push:
     branches:
-      - loop-accounts
-#    paths-ignore:
-#      - '.github/**'
+      - master
+    paths-ignore:
+      - '.github/**'
+  pull_request:
+    branches:
+      - master      
+    paths-ignore:
+      - '.github/**'
 
 env:
   tf_working_dir: '/applied/accounts/.'
@@ -62,3 +67,13 @@ jobs:
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: true
+          
+      - name: 'Terragrunt Apply'
+        uses: the-commons-project/terragrunt-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tg_actions_version: ${{ env.tg_version }}
+          tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
+          tf_actions_subcommand: 'apply'
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_comment: true          
