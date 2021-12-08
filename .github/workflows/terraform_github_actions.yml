@@ -12,7 +12,7 @@ on:
       - '.github/**'
 
 env:
-  tf_working_dir: './applied/accounts/'
+  tf_working_dir: '/applied/accounts/'
   tf_version: '1.0.11'
   tg_version: '0.35.13'
 
