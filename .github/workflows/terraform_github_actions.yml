@@ -13,7 +13,7 @@ on:
 
 env:
   tf_working_dir: '/applied/accounts/.'
-  tf_version: '1.1.0'
+  tf_version: '1.0.11'
   tg_version: '0.35.13'
 
 permissions:
