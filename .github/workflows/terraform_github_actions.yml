@@ -46,7 +46,9 @@ jobs:
           terragrunt_version: ${{ env.tg_version }}
       
       - name: 'Terragrunt Init'
-        run: terragrunt run-all init --terragrunt-noninteractive
+        run: 
+          cd ${{ tf_working_dir}}
+          terragrunt run-all init --terragrunt-noninteractive
 
       - name: 'Terragrunt Validate'
         uses: the-commons-project/terragrunt-github-actions@master
