@@ -9,6 +9,6 @@ Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute to the t
 We purposefully put most of the information for repo/module maintainers in a separate file [module-maintainer-guidelines.md](module-maintainer-guidelines.md) in order to all them to use this main readme to provide information to the consumers of their Terraform module.
 
 
-https://terragrunt.gruntwork.io/docs/features/keep-your-terraform-code-dry <br /> 
+https://terragrunt.gruntwork.io/docs/features/keep-your-terraform-code-dry <br/> 
 https://github.com/autero1/action-terragrunt <br /> 
 https://github.com/autero1/action-terraform <br/> 
