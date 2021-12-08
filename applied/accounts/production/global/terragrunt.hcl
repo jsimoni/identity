@@ -2,17 +2,20 @@ include {
   path = find_in_parent_folders("root.hcl")
 }
 
-include "root" {
-  path = find_in_parent_folders()
+generate "provider" {
+  path = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents = <<EOF
+provider "aws" {
+  assume_role {
+    role_arn = "arn:aws:iam::452012047556:role/GitHubAction_Identity_Role"
+  }
 }
-
-dependency "iam" {
-  config_path = "./iam"
+EOF
 }
 
 terraform {
-  #pin this to a specific tag/version when in another git repo
-  source = ""
+  source = "../../../../modules//iam"
 }
 
 inputs = {

@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "policy" {
-  name        = "sample-policy"
+  name        = "my-sample-policy"
   description = "My sample policy"
 
   policy = <<EOT
