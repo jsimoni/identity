@@ -35,18 +35,18 @@ jobs:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
 
-      - name: 'Terragrunt Init'
-        uses: the-commons-project/terragrunt-github-actions@master
+      - name: 'Terraform Setup'
+        uses: autero1/action-terraform@v1.0.3
         with:
-          tf_actions_version: ${{ env.tf_version }}
-          tg_actions_version: ${{ env.tg_version }}
-          tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: ${{ env.tf_working_dir }}
-          tf_actions_comment: true
-        env:
-          TF_INPUT: false
-
+          terragrunt_version: ${{ env.tg_version }}
+ 
+      - name: 'Terragrunt Setup'
+        uses: autero1/action-terragrunt@v1.1.1
+        with:
+          terragrunt_version: ${{ env.tg_version }}
+      
+      - name: 'Terragrunt Init'
+        run: terragrunt run-all init --terragrunt-noninteractive
 
       - name: 'Terragrunt Validate'
         uses: the-commons-project/terragrunt-github-actions@master
