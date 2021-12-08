@@ -11,4 +11,4 @@ We purposefully put most of the information for repo/module maintainers in a sep
 
 https://terragrunt.gruntwork.io/docs/features/keep-your-terraform-code-dry <br/> 
 https://github.com/autero1/action-terragrunt <br/> 
-https://github.com/autero1/action-terraform <br /> 
+https://github.com/autero1/action-terraform <br/> 
