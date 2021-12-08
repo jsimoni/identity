@@ -38,7 +38,7 @@ jobs:
       - name: 'Terraform Setup'
         uses: autero1/action-terraform@v1.0.3
         with:
-          terragrunt_version: ${{ env.tg_version }}
+          terraform_version: ${{ env.tf_version }}
  
       - name: 'Terragrunt Setup'
         uses: autero1/action-terragrunt@v1.1.1
