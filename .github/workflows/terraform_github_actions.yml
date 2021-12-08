@@ -8,13 +8,13 @@ on:
   pull_request:
     branches:
       - master      
-#    paths-ignore:
-#      - '.github/**'
+    paths-ignore:
+      - '.github/**'
 
 env:
   tf_working_dir: '/applied/accounts/.'
-  tf_version: '1.0.11'
-  tg_version: '0.35.13'
+  tf_version: 'latest'
+  tg_version: 'latest'
 
 permissions:
   id-token: write
@@ -34,22 +34,6 @@ jobs:
         with:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
-
-#      - name: 'Terraform Setup'
-#        uses: autero1/action-terraform@v1.0.3
-#        with:
-#          terraform_version: ${{ env.tf_version }}
-# 
-#      - name: 'Terragrunt Setup'
-#        uses: autero1/action-terragrunt@v1.1.1
-#        with:
-#          terragrunt_version: ${{ env.tg_version }}
-#      
-#      - name: 'Terragrunt Init'
-#        run: |
-#          ls
-#          cd ${{ env.tf_working_dir }}
-#          terragrunt run-all init --terragrunt-noninteractive
 
       - name: 'Terragrunt Init'
         uses: the-commons-project/terragrunt-github-actions@master
