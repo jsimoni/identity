@@ -20,7 +20,7 @@ EOT
 }
 
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "policy2" {
   name        = "another-sample-policy"
   description = "Another sample policy"
 
