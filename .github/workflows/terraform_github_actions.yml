@@ -47,6 +47,13 @@ jobs:
         env:
           TF_INPUT: false
 
+      - name: 'Checkov'
+        run: | 
+          pip3 install checkov
+          find . -type d -name .terragrunt-cache |while read fname; do
+            checkov -d "$fname"
+          done
+          
 
       - name: 'Terragrunt Validate'
         uses: the-commons-project/terragrunt-github-actions@master
