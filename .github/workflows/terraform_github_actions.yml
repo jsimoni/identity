@@ -47,7 +47,7 @@ jobs:
       
       - name: 'Terragrunt Init'
         run: 
-          cd ${{ tf_working_dir}}
+          cd ${{ env.tf_working_dir }}
           terragrunt run-all init --terragrunt-noninteractive
 
       - name: 'Terragrunt Validate'
