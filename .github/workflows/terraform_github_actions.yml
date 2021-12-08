@@ -46,7 +46,7 @@ jobs:
           terragrunt_version: ${{ env.tg_version }}
       
       - name: 'Terragrunt Init'
-        run: 
+        run: |
           cd ${{ env.tf_working_dir }}
           terragrunt run-all init --terragrunt-noninteractive
 
