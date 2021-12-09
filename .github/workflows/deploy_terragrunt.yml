@@ -42,7 +42,8 @@ jobs:
           role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform
+
 
       - run: terraform init
 
