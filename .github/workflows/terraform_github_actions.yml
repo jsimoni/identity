@@ -7,7 +7,7 @@ on:
       - '.github/**'
   pull_request:
     branches:
-      - master      
+      - master
     paths-ignore:
       - '.github/**'
 
@@ -47,14 +47,6 @@ jobs:
         env:
           TF_INPUT: false
 
-      - name: 'Checkov'
-        run: | 
-          pip3 install checkov
-          find . -type d -name .terragrunt-cache |while read fname; do
-            checkov -d "$fname"
-          done
-          
-
       - name: 'Terragrunt Validate'
         uses: the-commons-project/terragrunt-github-actions@master
         with:
@@ -74,7 +66,14 @@ jobs:
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: true
-          
+
+      - name: 'Checkov'
+        uses: bridgecrewio/checkov-action@master
+          directory: plans/
+          quiet: true # optional: display only failed checks
+#          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+#          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+                    
       - name: 'Terragrunt Apply'
         uses: the-commons-project/terragrunt-github-actions@master
         with:
@@ -83,4 +82,4 @@ jobs:
           tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
           tf_actions_subcommand: 'apply'
           tf_actions_working_dir: ${{ env.tf_working_dir }}
-          tf_actions_comment: true          
+          tf_actions_comment: true

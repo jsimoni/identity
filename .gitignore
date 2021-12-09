@@ -12,3 +12,6 @@
 
 provider.tf
 backend.tf
+
+**/plans/
+**/plans/*
