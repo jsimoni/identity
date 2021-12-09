@@ -63,14 +63,14 @@ jobs:
           tf_actions_version: ${{ env.tf_version }}
           tg_actions_version: ${{ env.tg_version }}
           tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
-          tf_actions_subcommand: 'plan -out=plan'
+          tf_actions_subcommand: 'plan'
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: true
 
-      - name: 'Checkov'
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: plans
+#      - name: 'Checkov'
+#        uses: bridgecrewio/checkov-action@master
+#        with:
+#          directory: plans
 #          quiet: true # optional: display only failed checks
 #          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
 #          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
