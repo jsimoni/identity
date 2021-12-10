@@ -32,27 +32,30 @@ jobs:
         working-directory: './modules/iam'
 
     steps:
-#      - uses: actions/setup-node@v2
-#        with:
-#          node-version: '14'
-
       - name: 'checkout'
         uses: actions/checkout@v2
 
-      - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@master
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
+      - name: Install Terraform and Terragrunt
+        run: |
+          brew tap rocketinsights/tgenv
+          brew install tfenv tgenv
+          tfenv install
+          tgenv install
+      - name: Get Versions
+        run: |
+          terragrunt --version
+          terraform --version
 
-      - run: ls
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.3.2
-#        with:
-#          terraform_version: 1.1.0
-#          terraform_wrapper: false
-
+      # - name: configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@master
+      #   with:
+      #     aws-region: us-east-1
+      #     role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
+      #
+      # - run: ls
+      #
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v1.3.2
 
       - run: terraform init
 
