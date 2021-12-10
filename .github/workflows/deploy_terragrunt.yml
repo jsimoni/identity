@@ -29,9 +29,9 @@ jobs:
 
     defaults:
       run:
-        working-directory: './modules/iam/'
+        working-directory: './modules/iam'
 
-#    steps:
+    steps:
 #      - uses: actions/setup-node@v2
 #        with:
 #          node-version: '14'
