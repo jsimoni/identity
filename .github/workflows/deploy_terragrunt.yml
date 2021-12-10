@@ -29,7 +29,8 @@ jobs:
 
     defaults:
       run:
-        working-directory: './modules/iam'
+#        working-directory: './modules/iam'
+        working-directory: ${{ env.tf_working_dir }}
 
     steps:
       - name: 'checkout'
@@ -57,6 +58,7 @@ jobs:
         with:
           terraform_version: ${{ env.tf_version }}
 
+      # installing Terragrunt this way takes longer, but at the time there wasn't a setup-terragrunt re-usable action
       - name: Install Terragrunt
         run: |
           brew tap rocketinsights/tgenv
@@ -68,6 +70,4 @@ jobs:
           terragrunt --version
           terraform --version
 
-      - run: terraform init
-
-      - run: echo 'hi'
+      - run: ls 
