@@ -14,7 +14,7 @@ on:
 # based on https://learn.hashicorp.com/tutorials/terraform/github-actions
 
 env:
-  tf_working_dir: '/applied/accounts/.'
+  tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
   tg_version: 'latest'
 
@@ -70,4 +70,4 @@ jobs:
           terragrunt --version
           terraform --version
 
-      - run: ls 
+      - run: ls
