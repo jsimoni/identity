@@ -24,7 +24,7 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
+  terraform2:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
