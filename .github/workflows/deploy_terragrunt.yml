@@ -39,7 +39,7 @@ jobs:
         run: |
           brew tap rocketinsights/tgenv
           brew install tfenv tgenv
-          tfenv install
+          tfenv install latest
           tgenv install latest
       - name: Get Versions
         run: |
