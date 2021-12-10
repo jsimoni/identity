@@ -5,9 +5,9 @@ on:
 #       - master
 #     paths-ignore:
 #       - '.github/**'
-#   pull_request:
-#     branches:
-#       - master
+   pull_request:
+     branches:
+       - master
 #     paths-ignore:
 #       - '.github/**'
 
