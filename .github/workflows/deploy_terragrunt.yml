@@ -40,7 +40,7 @@ jobs:
           brew tap rocketinsights/tgenv
           brew install tfenv tgenv
           tfenv install
-          tgenv install
+          tgenv install latest
       - name: Get Versions
         run: |
           terragrunt --version
