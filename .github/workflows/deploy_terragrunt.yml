@@ -17,6 +17,7 @@ env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
   tg_version: 'latest'
+  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:
   id-token: write
@@ -29,29 +30,17 @@ jobs:
 
     defaults:
       run:
-#        working-directory: './modules/iam'
         working-directory: ${{ env.tf_working_dir }}
 
     steps:
       - name: 'checkout'
         uses: actions/checkout@v2
 
-      # - name: Install Terraform and Terragrunt
-      #   run: |
-      #     brew tap rocketinsights/tgenv
-      #     brew install tfenv tgenv
-      #     tfenv install latest
-      #     tgenv install latest
-      # - name: Get Versions
-      #   run: |
-      #     terragrunt --version
-      #     terraform --version
-
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::940407795328:role/github_orchestration_role
+          role-to-assume: ${{ env.orchestration_role_arn }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
@@ -63,13 +52,6 @@ jobs:
         with:
           terragrunt_version: ${{ env.tg_version }}
 
-      # installing Terragrunt this way takes longer, but at the time there wasn't a setup-terragrunt re-usable action
-      # - name: Install Terragrunt
-      #   run: |
-      #     brew tap rocketinsights/tgenv
-      #     brew install tgenv
-      #     tgenv install ${{ env.tg_version }}
-
       - name: Get Versions
         run: |
           terragrunt --version
@@ -80,6 +62,12 @@ jobs:
           terragrunt run-all init --terragrunt-non-interactive
           terragrunt run-all validate --terragrunt-non-interactive
 
+      - name: Plan
+        if: ${{ github.event.issue.pull_request }}
+        run: |
+          terragrunt run-all plan --terragrunt-non-interactive
+
       - name: Plan or Apply
+        if: ${{ github.event.issue.push }}
         run: |
           terragrunt run-all apply --terragrunt-non-interactive
