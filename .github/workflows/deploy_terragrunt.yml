@@ -54,12 +54,14 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
+        with:
+          terraform_version: ${{ env.tf_version }}
 
       - name: Install Terragrunt
         run: |
           brew tap rocketinsights/tgenv
           brew install tgenv
-          tgenv install latest
+          tgenv install ${{ env.tg_version }}
 
       - name: Get Versions
         run: |
