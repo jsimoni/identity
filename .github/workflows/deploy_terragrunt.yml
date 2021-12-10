@@ -70,4 +70,11 @@ jobs:
           terragrunt --version
           terraform --version
 
-      - run: ls
+      - name: Validate & Test Code
+        run: |
+          terragrunt run-all init --terragrunt-non-interactive
+          terragrunt run-all validate --terragrunt-non-interactive
+
+      - name: Plan or Apply
+        run: |
+          terragrunt run-all apply --terragrunt-non-interactive      
