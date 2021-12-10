@@ -62,6 +62,7 @@ jobs:
           terragrunt run-all init --terragrunt-non-interactive
           terragrunt run-all validate --terragrunt-non-interactive
 
+      - run: echo ${{ github.event }}
       - name: Plan
         if: github.event.pull_request
         run: |
