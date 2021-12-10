@@ -58,12 +58,17 @@ jobs:
         with:
           terraform_version: ${{ env.tf_version }}
 
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: ${{ env.tg_version }}
+
       # installing Terragrunt this way takes longer, but at the time there wasn't a setup-terragrunt re-usable action
-      - name: Install Terragrunt
-        run: |
-          brew tap rocketinsights/tgenv
-          brew install tgenv
-          tgenv install ${{ env.tg_version }}
+      # - name: Install Terragrunt
+      #   run: |
+      #     brew tap rocketinsights/tgenv
+      #     brew install tgenv
+      #     tgenv install ${{ env.tg_version }}
 
       - name: Get Versions
         run: |
@@ -77,4 +82,4 @@ jobs:
 
       - name: Plan or Apply
         run: |
-          terragrunt run-all apply --terragrunt-non-interactive      
+          terragrunt run-all apply --terragrunt-non-interactive

@@ -1,15 +1,15 @@
 name: 'Terraform GitHub Actions'
-on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '.github/**'
-  pull_request:
-    branches:
-      - master
-    paths-ignore:
-      - '.github/**'
+# on:
+#   push:
+#     branches:
+#       - master
+#     paths-ignore:
+#       - '.github/**'
+#   pull_request:
+#     branches:
+#       - master
+#     paths-ignore:
+#       - '.github/**'
 
 env:
   tf_working_dir: '/applied/accounts/.'
