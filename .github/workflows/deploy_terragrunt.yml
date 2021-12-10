@@ -73,8 +73,8 @@ jobs:
         with:
           directory: plans
           quiet: true # optional: display only failed checks
-          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+#          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+#          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 
       - name: Apply
         if: github.event_name == 'push'
