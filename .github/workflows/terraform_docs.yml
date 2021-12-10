@@ -2,7 +2,7 @@ name: 'Generate Terraform docs'
 on:
   pull_request:
     branches:
-      - master
+      - masterxxxx
     paths-ignore:
       - '.github/**'
 env:
