@@ -72,7 +72,7 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: plans
-          quiet: true # optional: display only failed checks
+          quiet: false # optional: display only failed checks
 #          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
 #          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 
