@@ -52,7 +52,7 @@ jobs:
         with:
           terragrunt_version: ${{ env.tg_version }}
 
-      - name: Get Versions
+      - name: Get Terraform & Terragrunt Versions
         run: |
           terragrunt --version
           terraform --version
