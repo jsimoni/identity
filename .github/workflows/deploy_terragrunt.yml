@@ -67,6 +67,8 @@ jobs:
         run: |
           terragrunt run-all plan -out=plan --terragrunt-non-interactive
 
+      - run: ls
+      
       - name: 'Test Plan (Checkov)'
         if: github.event_name == 'pull_request'
         uses: bridgecrewio/checkov-action@master
