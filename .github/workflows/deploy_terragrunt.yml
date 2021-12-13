@@ -69,12 +69,16 @@ jobs:
 
       - run: find . -name 'plan.json'
 
-      - name: 'Test Plan (Checkov)'
-        if: github.event_name == 'pull_request'
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: plans/
-          quiet: false # optional: display only failed checks
+      - run: |
+        pip install checkov
+        checkov -d plans/
+        
+      # - name: 'Test Plan (Checkov)'
+      #   if: github.event_name == 'pull_request'
+      #   uses: bridgecrewio/checkov-action@master
+      #   with:
+      #     directory: plans/
+      #     quiet: false # optional: display only failed checks
 #          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
 #          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 
