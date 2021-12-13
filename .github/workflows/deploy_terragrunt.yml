@@ -70,9 +70,9 @@ jobs:
       - run: find . -name 'plan.json'
 
       - run: |
-        pip install checkov
-        checkov -d plans/
-        
+          pip install checkov
+          checkov -d plans/
+
       # - name: 'Test Plan (Checkov)'
       #   if: github.event_name == 'pull_request'
       #   uses: bridgecrewio/checkov-action@master
