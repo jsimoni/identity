@@ -68,9 +68,8 @@ jobs:
           terragrunt run-all plan -out=plan --terragrunt-non-interactive
 
       - run: |
-#        find . -name 'plan.json'
-        ls
-        cat plans/production/global/plan.json
+          find . -name 'plan.json'
+          cat plans/production/global/plan.json
 
       - run: |
           pip3 install checkov
