@@ -69,6 +69,7 @@ jobs:
 
       - run: |
 #        find . -name 'plan.json'
+        ls
         cat plans/production/global/plan.json
 
       - run: |
