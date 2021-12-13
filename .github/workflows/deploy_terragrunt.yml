@@ -73,7 +73,7 @@ jobs:
 
       - run: |
           pip3 install checkov
-          checkov -d plans/
+          LOG_LEVEL=DEBUG checkov -d plans/
 
       # - name: 'Test Plan (Checkov)'
       #   if: github.event_name == 'pull_request'
