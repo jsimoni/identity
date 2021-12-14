@@ -67,6 +67,8 @@ jobs:
         run: |
           terragrunt run-all plan -out=tfplan.binary --terragrunt-non-interactive
 
+      - run: |
+        ls -la
       # - run: |
       #     find . -name 'plan.json'
       #     cat plans/production/global/plan.json
