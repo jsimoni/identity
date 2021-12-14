@@ -106,7 +106,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            Put Terraform Plan Here
+            ${process.env.PLAN}
             \`\`\`
 
             </details>
