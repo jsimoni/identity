@@ -67,9 +67,9 @@ jobs:
         run: |
           terragrunt run-all plan -out=tfplan.binary --terragrunt-non-interactive
 
-      - run: |
-          find . -name 'plan.json'
-          cat plans/production/global/plan.json
+      # - run: |
+      #     find . -name 'plan.json'
+      #     cat plans/production/global/plan.json
 
       - run: |
           pip3 install checkov
