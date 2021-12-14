@@ -67,15 +67,15 @@ jobs:
         run: |
           terragrunt run-all plan -out=tfplan.binary --terragrunt-non-interactive
 
-      - run: |
-          ls -la
+      # - run: |
+      #     ls -la
       # - run: |
       #     find . -name 'plan.json'
       #     cat plans/production/global/plan.json
 
-      - run: |
-          pip3 install checkov
-          LOG_LEVEL=DEBUG checkov -f ./plan.json --framework terraform_plan
+      # - run: |
+      #     pip3 install checkov
+      #     LOG_LEVEL=DEBUG checkov -f ./plan.json --framework terraform_plan
 #          LOG_LEVEL=DEBUG checkov -d plans/
 
       # - name: 'Test Plan (Checkov)'
