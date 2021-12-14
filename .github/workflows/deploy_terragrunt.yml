@@ -85,40 +85,39 @@ jobs:
     #     quiet: false # optional: display only failed checks
 #          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
 #          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
-
-    - name: Update Pull Request
-      uses: actions/github-script@0.9.0
-      if: github.event_name == 'pull_request'
-      env:
-        PLAN: "terraform\n${{ steps.Plan.outputs.stdout }}"
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-          #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-          #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-          #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-
-          <details><summary>Show Plan</summary>
-
-          \`\`\`\n
-          ${process.env.PLAN}
-          \`\`\`
-
-          </details>
-
-          *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-
-          github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: output
-          })
-
+     
+    # - name: Update Pull Request
+    #   uses: actions/github-script@0.9.0
+    #   if: github.event_name == 'pull_request'
+    #   env:
+    #     PLAN: "terraform\n${{ steps.Plan.outputs.stdout }}"
+    #   with:
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    #     script: |
+    #       const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+    #       #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+    #       #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+    #       #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+    #
+    #       <details><summary>Show Plan</summary>
+    #
+    #       \`\`\`\n
+    #       ${process.env.PLAN}
+    #       \`\`\`
+    #
+    #       </details>
+    #
+    #       *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+    #
+    #       github.issues.createComment({
+    #         issue_number: context.issue.number,
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         body: output
+    #       })
+    #
 
     - name: Apply
       if: github.event_name == 'push'
       run: |
         terragrunt run-all apply --terragrunt-non-interactive
-  
