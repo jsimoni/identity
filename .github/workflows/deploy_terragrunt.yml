@@ -75,7 +75,7 @@ jobs:
 
       - run: |
           pip3 install checkov
-          LOG_LEVEL=DEBUG checkov -d . --framework terraform_plan
+          LOG_LEVEL=DEBUG checkov -f plan.json --framework terraform_plan
 #          LOG_LEVEL=DEBUG checkov -d plans/
 
       # - name: 'Test Plan (Checkov)'
