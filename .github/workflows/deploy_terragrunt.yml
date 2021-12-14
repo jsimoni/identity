@@ -70,7 +70,7 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          terragrunt run-all plan -out=tfplan.binary --terragrunt-non-interactive
+          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
 
       # - run: |
       #     ls -la
