@@ -4,7 +4,7 @@ on:
     branches:
       - master
 #    paths-ignore:
-      - '.github/**'
+#      - '.github/**'
   pull_request:
     branches:
       - master
@@ -16,15 +16,17 @@ on:
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
-  tg_version: 'latest'
+  tg_version: 'v0.35.13'
   orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:
   id-token: write
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
-  terraform:
+  Terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
@@ -46,27 +48,78 @@ jobs:
         uses: hashicorp/setup-terraform@v1.3.2
         with:
           terraform_version: ${{ env.tf_version }}
+          terraform_wrapper: true
 
       - name: Setup Terragrunt
         uses: autero1/action-terragrunt@v1.1.0
         with:
           terragrunt_version: ${{ env.tg_version }}
 
-      - name: Get Versions
+      - name: Get Terraform & Terragrunt Versions
         run: |
           terragrunt --version
           terraform --version
 
       - name: Validate & Test Code
+        id: init
         run: |
           terragrunt run-all init --terragrunt-non-interactive
           terragrunt run-all validate --terragrunt-non-interactive
 
-      - run: echo ${{ github.event }}
       - name: Plan
+        id: plan
         if: github.event_name == 'pull_request'
         run: |
-          terragrunt run-all plan --terragrunt-non-interactive
+          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+
+      # - run: |
+      #     ls -la
+      # - run: |
+      #     find . -name 'plan.json'
+      #     cat plans/production/global/plan.json
+
+      # - run: |
+      #     pip3 install checkov
+      #     LOG_LEVEL=DEBUG checkov -f ./plan.json --framework terraform_plan
+  #          LOG_LEVEL=DEBUG checkov -d plans/
+
+      # - name: 'Test Plan (Checkov)'
+      #   if: github.event_name == 'pull_request'
+      #   uses: bridgecrewio/checkov-action@master
+      #   with:
+      #     directory: plans/
+      #     quiet: false # optional: display only failed checks
+  #          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+  #          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+
+      - name: Update Pull Request
+        uses: actions/github-script@0.9.0
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
 
       - name: Apply
         if: github.event_name == 'push'
