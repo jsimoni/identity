@@ -20,9 +20,11 @@ env:
   orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:
+  meta-data: read
   id-token: write
   contents: read
-  issues: write   
+  issues: write
+  single_file: write 
 
 jobs:
   Terraform:
