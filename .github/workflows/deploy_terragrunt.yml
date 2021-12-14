@@ -24,7 +24,8 @@ permissions:
   id-token: write
   contents: read
   issues: write
-  single_file: write 
+  pull-requests: write
+  single_file: write
 
 jobs:
   Terraform:
