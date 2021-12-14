@@ -48,6 +48,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1.3.2
         with:
           terraform_version: ${{ env.tf_version }}
+          terraform_wrapper: true
 
       - name: Setup Terragrunt
         uses: autero1/action-terragrunt@v1.1.0
@@ -60,11 +61,13 @@ jobs:
           terraform --version
 
       - name: Validate & Test Code
+        id: init
         run: |
           terragrunt run-all init --terragrunt-non-interactive
           terragrunt run-all validate --terragrunt-non-interactive
 
       - name: Plan
+        id: plan
         if: github.event_name == 'pull_request'
         run: |
           terragrunt run-all plan -out=tfplan.binary --terragrunt-non-interactive
@@ -97,7 +100,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Plan 📖\`success\`
+            const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
 
