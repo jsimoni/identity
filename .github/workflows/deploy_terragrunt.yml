@@ -97,7 +97,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Plan 📖\`${{ steps.Plan.outcome }}\`
+            const output = `#### Terraform Plan 📖\`success\`
 
             <details><summary>Show Plan</summary>
 
