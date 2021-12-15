@@ -32,7 +32,7 @@ resource "aws_iam_policy" "policy2" {
       "Action": [
         "*"
       ],
-      "Effect": "Allow",
+      "Effect": "Deny",
       "Resource": "*"
     }
   ]
