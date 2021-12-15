@@ -3,12 +3,14 @@ on:
   push:
     branches:
       - master
-#    paths-ignore:
+    paths-ignore:
+      - '**.md'
 #      - '.github/**'
   pull_request:
     branches:
       - master
-#    paths-ignore:
+    paths-ignore:
+      - '**.md'      
 #      - '.github/**'
 
 # based on https://learn.hashicorp.com/tutorials/terraform/github-actions
