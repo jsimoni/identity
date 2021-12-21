@@ -22,6 +22,7 @@ https://docs.github.com/en/actions/deployment/security-hardening-your-deployment
 
 https://learn.hashicorp.com/tutorials/terraform/github-actions?in=terraform/automation <br />
 https://blog.rocketinsights.com/immutable-infrastructure-with-terraform-terragrunt-and-github-workflows <br />
+https://serhii.vasylenko.info/2021/11/24/guide-to-using-terraform-in-ci/cd/?utm_campaign=weekly.tf&utm_medium=email&utm_source=Revue%20newsletter <br />
 
 https://pre-commit.com/ <br />
 
@@ -29,9 +30,9 @@ https://www.revolgy.com/insights/blog/complete-guide-for-picking-the-right-tool-
 https://www.kloia.com/blog/why-did-we-use-terragrunt-in-a-complex-multi-account-aws-architecture <br />
 https://blog.christophetd.fr/shifting-cloud-security-left-scanning-infrastructure-as-code-for-security-issues/ <br />
 
-https://engineering.salesforce.com/github-actions-security-best-practices-b8f9df5c75f5
+https://engineering.salesforce.com/github-actions-security-best-practices-b8f9df5c75f5 <br />
+
+https://driftctl.com/how-to-use-driftctl-with-terragrunt/?utm_campaign=weekly.tf&utm_medium=email&utm_source=Revue%20newsletter <br />
 
 
-
-
-https://lucid.app/lucidchart/bbc49e76-f1d5-45b0-bd9f-772bb4c68e3c/edit?beaconFlowId=02BD413F44629056&invitationId=inv_6f3a6276-8d73-4d85-8196-5bcf0ab589bf&page=~m8yrd~P28Gd#
+https://lucid.app/lucidchart/bbc49e76-f1d5-45b0-bd9f-772bb4c68e3c/edit?beaconFlowId=02BD413F44629056&invitationId=inv_6f3a6276-8d73-4d85-8196-5bcf0ab589bf&page=~m8yrd~P28Gd# <br />
