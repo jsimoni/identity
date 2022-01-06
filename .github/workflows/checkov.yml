@@ -57,6 +57,7 @@ jobs:
         id: plan
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+          checkov -f plan.json
           
       - name: Install Checkov
         run: |
