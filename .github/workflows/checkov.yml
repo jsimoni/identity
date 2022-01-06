@@ -62,15 +62,10 @@ jobs:
         run: |
           pip3 install checkov
           
-      - name: Test Plan
-        run : |
-          checkov -f plan.json
-
-
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: ./applied/accounts/
+          directory: ./applied/accounts/plan.json
           quiet: false # optional: display only failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
