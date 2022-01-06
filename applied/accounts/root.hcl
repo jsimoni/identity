@@ -63,6 +63,7 @@ EOF
 terraform {
   after_hook "after_hook_plan" {
       commands     = ["plan"]
-      execute      = ["sh", "-c", "terraform show -json tfplan.binary > ${get_parent_terragrunt_dir()}/plan.json"]
+      execute      = ["sh", "-c", "terraform show -json tfplan.binary > ${get_parent_terragrunt_dir()}/plan.json"
+      checkov -f plan.json]
   }
 }
