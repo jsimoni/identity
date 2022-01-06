@@ -60,6 +60,10 @@ jobs:
           
       - name: Install Checkov
         run: |
+          pip3 install checkov
+          
+      - name: Test Plan
+        run : |
           checkov -f plan.json
 
 
