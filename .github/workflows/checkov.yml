@@ -52,7 +52,6 @@ jobs:
         run : |
           pip3 install checkov
           
-         
       - name: Init
         id: init
         run: |
@@ -62,11 +61,7 @@ jobs:
         id: plan
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
-          checkov -f plan.json
-          
-      - name: Install Checkov
-        run: |
-          pip3 install checkov
+          checkov -f ./applied/accounts/plan.json
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
