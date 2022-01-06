@@ -61,7 +61,6 @@ jobs:
         id: plan
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
-          terragrunt show -json tf.plan.binary > plan.json
           checkov -f plan.json
           
       - name: 'Test Plan (Checkov)'
