@@ -41,3 +41,12 @@ resource "aws_iam_policy" "policy2" {
 EOT
 }
 
+resource "aws_vpc" "test-vpc" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "OIDC-Assume-HOU"
+  }
+}
+
