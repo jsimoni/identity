@@ -51,12 +51,12 @@ jobs:
       - name: Init
         id: init
         run: |
-          terragrunt run-all init --terragrunt-non-interactive
+          terragrunt init --terragrunt-non-interactive
 
       - name: Plan
         id: plan
         run: |
-          terragrunt run-all plan --out tfplan.binary -no-color --terragrunt-non-interactive
+          terragrunt plan --out tfplan.binary -no-color --terragrunt-non-interactive
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
