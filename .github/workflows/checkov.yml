@@ -48,10 +48,6 @@ jobs:
         with:
           terragrunt_version: ${{ env.tg_version }}
           
-      - name: Install checkov
-        run : |
-          pip3 install checkov
-          
       - name: Init
         id: init
         run: |
