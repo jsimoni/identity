@@ -57,8 +57,9 @@ jobs:
         id: plan
         run: |
           terragrunt plan --out tfplan.binary -no-color 
-          terraform show -json tfplan.binary > tfplan.json
-          
+      - name: Terraform show
+        run: |
+         terraform show -json tfplan.binary > tfplan.json
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
