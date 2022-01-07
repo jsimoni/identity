@@ -7,7 +7,7 @@ on:
       - '.github-DONTIGORE/**'
 
 env:
-  tf_working_dir: './applied/accounts/production/global'
+  tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
   tg_version: 'v0.35.13'
   orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
@@ -51,15 +51,12 @@ jobs:
       - name: Init
         id: init
         run: |
-          terragrunt init --terragrunt-non-interactive
+          terragrunt run-all init --terragrunt-non-interactive
 
       - name: Plan
         id: plan
         run: |
-          terragrunt plan --out tfplan.binary -no-color 
-      - name: Terraform show
-        run: |
-         terraform show -json tfplan.binary > tfplan.json
+          terragrunt run-all plan --out tfplan.binary -no-color --terragrunt-non-interactive
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
