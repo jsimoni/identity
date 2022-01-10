@@ -41,20 +41,3 @@ resource "aws_iam_policy" "policy2" {
 EOT
 }
 
-resource "aws_vpc" "test-vpc" {
-  cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "default"
-
-  tags = {
-    Name = "OIDC-Assume-HOU"
-  }
-}
-
-resource "aws_flow_log" "example" {
-  traffic_type    = "ALL"
- vpc_id          = aws_vpc.test-vpc.id
-}
-
-resource "aws_default_security_group" "default" {
-  vpc_id = aws_vpc.test-vpc.id
-}
