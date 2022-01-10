@@ -67,7 +67,7 @@ jobs:
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: .
+          directory: ./applied/accounts/plans/
           log_level: DEBUG # optional: set log level. Default WARNING          
           quiet: false # optional: display only failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
