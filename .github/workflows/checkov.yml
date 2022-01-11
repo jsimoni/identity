@@ -64,21 +64,12 @@ jobs:
           find . -name 'plan.json'
           cat plans/production/global/plan.json
 
-      - name: Checkov Manual
-        run : |
-          sudo apt update
-          sudo apt install software-properties-common
-          sudo add-apt-repository ppa:deadsnakes/ppa
-          sudo apt install python3.7
-          sudo apt install python3-pip
-          sudo python3.7 -m pip install -U checkov #to install or upgrade checkov)
-          checkov -d plans/
-
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
           directory: applied/accounts/plans/
-          log_level: DEBUG # optional: set log level. Default WARNING          
+          log_level: DEBUG # optional: set log level. Default WARNING  
+          download_external_modules: true
           #quiet: false # optional: display only failed checks
           #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           #output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
