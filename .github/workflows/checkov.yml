@@ -79,9 +79,9 @@ jobs:
         with:
           directory: applied/accounts/plans/
           log_level: DEBUG # optional: set log level. Default WARNING          
-          quiet: false # optional: display only failed checks
-          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+          #quiet: false # optional: display only failed checks
+          #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+          #output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 
       - name: Update Pull Request
         uses: actions/github-script@0.9.0
