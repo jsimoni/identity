@@ -67,7 +67,7 @@ jobs:
       - name: Checkov Manual
         run : |
           pip3 install checkov
-          checkov -d applied/accounts/plans/
+          checkov -d plans/
 
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
