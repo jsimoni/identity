@@ -60,6 +60,9 @@ jobs:
           
       - run: |
               ls -al
+              
+      - run: |
+             cat production/global/plan.json
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
