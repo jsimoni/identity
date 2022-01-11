@@ -58,7 +58,7 @@ jobs:
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
           
-          - run: |
+      - run: |
               ls -al
           
       - name: 'Test Plan (Checkov)'
