@@ -65,7 +65,7 @@ jobs:
           cat plans/production/global/plan.json
 
       - name: 'Test Plan (Checkov)'
-        uses: bridgecrewio/checkov-action@master
+        uses: bridgecrewio/checkov-action@v12
         with:
           directory: applied/accounts/plans/
           log_level: DEBUG # optional: set log level. Default WARNING  
