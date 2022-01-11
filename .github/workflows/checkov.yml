@@ -64,6 +64,11 @@ jobs:
           find . -name 'plan.json'
           cat plans/production/global/plan.json
 
+      - name: Checkov Manual
+        run : |
+          pip3 install checkov
+          checkov -d applied/accounts/plans/
+
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
