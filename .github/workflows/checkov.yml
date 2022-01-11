@@ -65,11 +65,11 @@ jobs:
           cat plans/production/global/plan.json
 
       - name: 'Test Plan (Checkov)'
-        uses: bridgecrewio/checkov-action@v12.903.0
+        uses: bridgecrewio/checkov-action@vmaster
         with:
           directory: applied/accounts/plans/
           log_level: DEBUG # optional: set log level. Default WARNING  
-          download_external_modules: true
+          #download_external_modules: true
           #quiet: false # optional: display only failed checks
           #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           #output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
