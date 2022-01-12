@@ -59,7 +59,7 @@ jobs:
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
 
       - run: |
-          ls -la
+          chmod -R 777 plans
       - run: |
           cat plans/production/global/plan.json
 
