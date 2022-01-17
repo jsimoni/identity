@@ -58,6 +58,12 @@ jobs:
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
           
+      - run: |
+           ls -la
+      - run: |
+         find . -name 'pln.json'
+         cat plans/production/global/plan.json
+          
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
