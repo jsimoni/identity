@@ -67,7 +67,6 @@ jobs:
          
       -  run: |
            pip install checkov
-           pip3 install -U checkov
            checkov -d .
      
           
