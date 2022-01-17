@@ -61,7 +61,6 @@ jobs:
       - run: |
            ls -la
       - run: |
-         find . -name 'plan.json'
          cat plans/production/global/plan.json
           
       - name: 'Test Plan (Checkov)'
