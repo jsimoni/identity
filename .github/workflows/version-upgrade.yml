@@ -1,0 +1,53 @@
+name: 'Terragrunt, Terraform, Providers Version Upgrades'
+
+env:
+  tf_working_dir: './applied/accounts/'
+  tf_version: 'latest'
+  tg_version: 'latest'
+  #move orchestration_role_arn to a GitHub Repo Secret
+  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  Terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ env.tf_working_dir }}
+
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v2
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ env.orchestration_role_arn }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.3.2
+        with:
+          terraform_version: ${{ env.tf_version }}
+          terraform_wrapper: true
+
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: ${{ env.tg_version }}
+
+      - run: |
+          terragrunt run-all init
+          terragrunt run-all apply -refresh-only
+
+          #update the versions.tf file below and then apply the new version
+          terragrunt run-all init -upgrade
+          terragrunt run-all plan -out=tfplan.binary
+          terragrunt run-all apply
