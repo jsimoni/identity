@@ -1,5 +1,7 @@
 name: 'Terragrunt, Terraform, Providers Version Upgrades'
-
+on:
+  workflow_dispatch:
+    
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
