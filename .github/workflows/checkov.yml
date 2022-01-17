@@ -56,12 +56,12 @@ jobs:
       - name: Plan
         id: plan
         run: |
-          terragrunt run-all plan -no-color --terragrunt-non-interactive
+          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: "."
+          directory: ./applied/accounts/test-plan
           quiet: false # optional: display only failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
