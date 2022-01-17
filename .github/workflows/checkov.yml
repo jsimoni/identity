@@ -59,19 +59,24 @@ jobs:
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
 
       - run: |
-          chmod -R 777 plans
-      - run: |
-          cat plans/production/global/plan.json
+          pip install checkov
+          pwd
+          checkov -d applied/accounts/plans/
 
-      - name: 'Test Plan (Checkov)'
-        uses: bridgecrewio/checkov-action@v12.1151.0
-        with:
-          directory: applied/accounts/plans/
-          log_level: DEBUG # optional: set log level. Default WARNING
-          #download_external_modules: true
-          #quiet: false # optional: display only failed checks
-          #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          #output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+      # - run: |
+      #     chmod -R 777 plans
+      # - run: |
+      #     cat plans/production/global/plan.json
+      #
+      # - name: 'Test Plan (Checkov)'
+      #   uses: bridgecrewio/checkov-action@v12.1151.0
+      #   with:
+      #     directory: applied/accounts/plans/
+      #     log_level: DEBUG # optional: set log level. Default WARNING
+      #     #download_external_modules: true
+      #     #quiet: false # optional: display only failed checks
+      #     #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+      #     #output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 
       - name: Update Pull Request
         uses: actions/github-script@0.9.0
