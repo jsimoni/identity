@@ -9,7 +9,7 @@ on:
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
-  tg_version: 'v0.35.13'
+  tg_version: 'latest'
   orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:
@@ -47,7 +47,7 @@ jobs:
         uses: autero1/action-terragrunt@v1.1.0
         with:
           terragrunt_version: ${{ env.tg_version }}
-          
+
       - name: Init
         id: init
         run: |
@@ -67,7 +67,7 @@ jobs:
         uses: bridgecrewio/checkov-action@v12.1151.0
         with:
           directory: applied/accounts/plans/
-          log_level: DEBUG # optional: set log level. Default WARNING  
+          log_level: DEBUG # optional: set log level. Default WARNING
           #download_external_modules: true
           #quiet: false # optional: display only failed checks
           #framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
