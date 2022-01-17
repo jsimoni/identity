@@ -61,7 +61,7 @@ jobs:
       - run: |
           pip install checkov
           pwd
-          checkov -d applied/accounts/plans/
+          checkov -d accounts/plans/
 
       # - run: |
       #     chmod -R 777 plans
