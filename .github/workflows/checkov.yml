@@ -67,7 +67,7 @@ jobs:
          
       -  run: |
            pip install checkov
-           checkov -f ./applied/accounts/tf-plan/tfplan.json
+           checkov -d .
      
           
       #- name: 'Test Plan (Checkov)'
