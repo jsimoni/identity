@@ -64,6 +64,9 @@ jobs:
       #   cat plans/production/global/plan.json
       #- run: |
        #  cat plans/testing/global/plan.json
+       
+      - run: |
+          cat plan.json
          
       -  run: |
            export LOG_LEVEL=DEBUG
