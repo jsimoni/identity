@@ -59,6 +59,9 @@ jobs:
           terragrunt run-all plan  -no-color --terragrunt-non-interactive
           
       - run: |
+           export LOG_LEVEL=DEBUG
+          
+      - run: |
            ls -la
      # - run: |
       #   cat plans/production/global/plan.json
