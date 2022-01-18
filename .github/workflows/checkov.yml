@@ -66,7 +66,7 @@ jobs:
          cat plans/testing/global/plan.json
          
       -  run: |
-           LOG_LEVEL=DEBUG
+           export LOG_LEVEL=DEBUG
            pip install checkov
            checkov -d .
      
