@@ -1,0 +1,46 @@
+name: 'KICS'
+on:
+  push:
+    branches:
+      - demo
+    paths-ignore:
+      - '**.md'
+#      - '.github/**'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+#      - '.github/**'
+
+env:
+  tf_working_dir: './applied/accounts/'
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  Kics:
+    name: 'Static Analysis of Code'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v2
+
+      - name: KICS Github Action
+        uses: Checkmarx/kics-github-action@latest
+        with:
+          # path to file or directory to scan
+          path:
+          # file path to store result in json format
+          output_path: # optional
+          # file path to store source internal representation in JSON format
+          payload_path: # optional
+          # path to directory with queries (default "./assets/queries")
+          queries: # optional
+          # verbose scan
+          verbose: # optional
