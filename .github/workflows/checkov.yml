@@ -19,6 +19,12 @@ permissions:
   pull-requests: write
 
 jobs:
+  Static_Analysis:
+    name: 'Static Analysis of Code'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/kics@demo
+
   Terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest

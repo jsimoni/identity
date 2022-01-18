@@ -1,14 +1,6 @@
 name: 'KICS'
 on:
-  push:
-    branches:
-      - demo
-    paths-ignore:
-      - '**.md'
-#      - '.github/**'
-
-env:
-  tf_working_dir: './applied/accounts/'
+  workflow_call:
 
 permissions:
   id-token: write
