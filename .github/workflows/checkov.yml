@@ -2,7 +2,7 @@ name: 'Checkov Security Scan'
 on:
   push:
     branches:
-      - demoxxx
+      - demo
     paths-ignore:
       - '.github-DONTIGORE/**'
 
