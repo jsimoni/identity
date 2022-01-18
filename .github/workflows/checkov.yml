@@ -56,22 +56,17 @@ jobs:
       - name: Plan
         id: plan
         run: |
-          terragrunt run-all plan  -no-color --terragrunt-non-interactive
-          
-      - run: |
-           export LOG_LEVEL=DEBUG
+          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
           
       - run: |
            ls -la
-     # - run: |
-      #   cat plans/production/global/plan.json
-      #- run: |
-       #  cat plans/testing/global/plan.json
-       
       - run: |
-          cat plan.json
-         
+         cat plans/production/global/plan.json
+      - run: |
+         cat plans/testing/global/plan.json
+       
       -  run: |
+           cd ./applied/accounts
            export LOG_LEVEL=DEBUG
            pip install checkov
            checkov -d .
