@@ -59,7 +59,7 @@ jobs:
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
 
       - run: |
-          set LOG_LEVEL=DEBUG
+          export LOG_LEVEL=DEBUG
           pip install checkov
           pwd
           checkov -d ../../
