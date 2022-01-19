@@ -68,7 +68,7 @@ jobs:
       -  run: |
            export LOG_LEVEL=DEBUG
            pip install checkov
-           checkov -d .
+           checkov -d ../../
      
           
       - name: 'Test Plan (Checkov)'
