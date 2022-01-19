@@ -20,15 +20,8 @@ permissions:
 
 jobs:
   Static_Analysis:
-    name: 'Static Analysis'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 'checkout'
-        uses: actions/checkout@v2
-
-      - name: 'Static Analysis of Code'
-        uses: ./.github/workflows/kics@demo
+    #uses: ./.github/workflows/kics@demo
+    uses: jsimoni/identity/.github/workflows/kics@demo
 
   Terraform:
     name: 'Terraform'

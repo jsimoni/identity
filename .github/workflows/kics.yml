@@ -2,11 +2,10 @@ name: 'KICS'
 on:
   workflow_call:
 
-permissions:
-  id-token: write
-  contents: read
-  issues: write
-  pull-requests: write
+# permissions:
+#   id-token: write
+#   contents: read
+#   pull-requests: write
 
 jobs:
   Kics:
