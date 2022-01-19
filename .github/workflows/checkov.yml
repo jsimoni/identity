@@ -21,7 +21,7 @@ permissions:
 jobs:
   Static_Analysis:
     #uses: ./.github/workflows/kics@demo
-    uses: jsimoni/identity/.github/workflows/kics@demo
+    uses: jsimoni/identity/.github/workflows/kics.yml@demo
 
   Terraform:
     name: 'Terraform'
