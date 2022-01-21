@@ -2,7 +2,7 @@ name: 'Checkov Security Scan'
 on:
   push:
     branches:
-      - checkov1
+      - checkov
     paths-ignore:
       - '.github-DONTIGORE/**'
 
@@ -57,6 +57,10 @@ jobs:
         id: plan
         run: |
           terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+          
+      - name: debug
+        run: |
+           --terragrunt-log-level debug
           
       - run: |
            ls -la
