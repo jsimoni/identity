@@ -1,4 +1,4 @@
-name: 'Checkov Security Scan'
+name: 'Kics Security Scan'
 on:
   push:
     branches:
@@ -71,7 +71,7 @@ jobs:
          #  checkov -d ../../
      
           
-      - name: 'Test Plan (Checkov)'
+      - name: 'Test Plan (Kics)'
         uses: checkmarx/kics-action@v1.3
         with:
           path: "."
