@@ -1,0 +1,107 @@
+name: 'Checkov Security Scan'
+on:
+  push:
+    branches:
+      - checkov
+    paths-ignore:
+      - '.github-DONTIGORE/**'
+
+env:
+  tf_working_dir: './applied/accounts/'
+  tf_version: 'latest'
+  tg_version: 'v0.35.13'
+  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  Terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ env.tf_working_dir }}
+
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v2
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ env.orchestration_role_arn }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1.3.2
+        with:
+          terraform_version: ${{ env.tf_version }}
+          terraform_wrapper: true
+
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: ${{ env.tg_version }}
+          
+      - name: Init
+        id: init
+        run: |
+          terragrunt run-all init --terragrunt-non-interactive
+
+      - name: Plan
+        id: plan
+        run: |
+          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+          
+      - run: |
+           ls -la
+      - run: |
+         cat plans/production/global/plan.json
+      - run: |
+         cat plans/testing/global/plan.json
+       
+      #-  run: |
+       #    export LOG_LEVEL=DEBUG
+        #   pip install checkov
+         #  checkov -d ../../
+     
+          
+      - name: 'Test Plan (Checkov)'
+        uses: checkmarx/kics-action@v1.3
+        with:
+          path: "."
+          fail_on: high,medium
+          output_path: myResults/
+          enable_comments: true
+         
+      - name: display kics result
+        run: |
+           cat myResults/results.json
+
+      #- name: Update Pull Request
+       # uses: actions/github-script@0.9.0
+        #if: github.event_name == 'pull_request'
+        #env:
+         # PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        #with:
+         # github-token: ${{ secrets.GITHUB_TOKEN }}
+          #script: |
+           # const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            ##### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            #<details><summary>Show Plan</summary>
+            #\`\`\`\n
+            #${process.env.PLAN}
+          #  \`\`\`
+          #  </details>
+           # *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+           # github.issues.createComment({
+            #  issue_number: context.issue.number,
+             # owner: context.repo.owner,
+              #repo: context.repo.repo,
+              #body: output
+            #})
