@@ -2,7 +2,7 @@ name: 'Kics Security Scan'
 on:
   push:
     branches:
-      - checkov1
+      - checkov
     paths-ignore:
       - '.github-DONTIGORE/**'
 
@@ -74,7 +74,7 @@ jobs:
       - name: 'Test Plan (Kics)'
         uses: checkmarx/kics-action@v1.3
         with:
-          path: ./applied/accounts
+          path: "."
           fail_on: high,medium
           output_path: myResults/
           verbose: true
