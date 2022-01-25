@@ -74,7 +74,7 @@ jobs:
       - name: 'Test Plan (Kics)'
         uses: checkmarx/kics-action@v1.3
         with:
-          path: plans/production/global/plan.json  
+          path: "."  
           fail_on: high,medium
           output_path: myResults/
           verbose: true
