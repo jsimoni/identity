@@ -65,9 +65,10 @@ jobs:
       - run: |
          cat plans/testing/global/plan.json
        
-     # -  run: |
-      #     pip install checkov
-       #    checkov -d ../../
+      -  run: |
+           export LOG_LEVEL=DEBUG
+           pip install checkov
+           checkov -d .
      
           
       - name: 'Test Plan (Checkov)'
