@@ -56,7 +56,7 @@ jobs:
       - name: Plan
         id: plan
         run: |
-          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+          terragrunt run-all plan -no-color --terragrunt-non-interactive
           
       - run: |
            ls -la
