@@ -2,7 +2,7 @@ name: 'Kics Security Scan'
 on:
   push:
     branches:
-      - checkov
+      - checkov1
     paths-ignore:
       - '.github-DONTIGORE/**'
 
