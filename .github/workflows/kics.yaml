@@ -2,7 +2,7 @@ name: 'Kics Security Scan'
 on:
   push:
     branches:
-      - checkov1
+      - checkov
     paths-ignore:
       - '.github-DONTIGORE/**'
 
@@ -65,10 +65,10 @@ jobs:
       - run: |
          cat plans/testing/global/plan.json
        
-      #-  run: |
-       #    export LOG_LEVEL=DEBUG
-        #   pip install checkov
-         #  checkov -d ../../
+      -  run: |
+           export LOG_LEVEL=DEBUG
+           pip install checkov
+           checkov -d .
      
           
       - name: 'Test Plan (Kics)'
