@@ -72,7 +72,7 @@ jobs:
         run: mkdir -p results-dir
           
       - name: 'Test Plan (Kics)'
-        uses: checkmarx/kics-action@latest
+        uses: checkmarx/kics-action@v1.3
         with:
           path: "."  
           output_path: results-dir
