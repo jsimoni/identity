@@ -74,7 +74,7 @@ jobs:
         uses: checkmarx/kics-action@v1.3
         with:
           path: "."  
-          fail_on: high,medium
+          enable_comment: true
          
      # - name: display kics result
       #  run: |
