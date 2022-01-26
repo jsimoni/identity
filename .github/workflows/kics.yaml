@@ -70,16 +70,13 @@ jobs:
 
       - name: MKdir results-dir
         run: mkdir -p results-dir
-        
-      - run: |
-         export LOG_LEVEL=DEBUG
           
       - name: 'Test Plan (Kics)'
         uses: checkmarx/kics-action@v1.3
         with:
           path: "."  
           output_path: results-dir
-          ignore_on_exit: results
+          enable_comments: true
           
       - run: |
           export LOG_LEVEL=DEBUG
