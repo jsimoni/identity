@@ -67,8 +67,8 @@ jobs:
        
       -  run: |
            export LOG_LEVEL=DEBUG
-           pip install checkov
-           checkov -d .
+           curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
+
      
           
       - name: 'Test Plan (Kics)'
