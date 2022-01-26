@@ -65,9 +65,8 @@ jobs:
       - run: |
          cat plans/testing/global/plan.json
        
-      -  run: |
-           export LOG_LEVEL=DEBUG
-           curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
+      # -  name: 'install & scan plan file
+       #    curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 
      
           
