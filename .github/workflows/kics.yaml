@@ -58,22 +58,22 @@ jobs:
         run: |
           terragrunt run-all plan  -no-color --terragrunt-non-interactive
 
-      - name: MKdir results-dir
-        run: mkdir -p results-dir
+    #  - name: MKdir results-dir
+     #   run: mkdir -p results-dir
           
       - name: 'Test Plan (Kics)'
         uses: checkmarx/kics-action@v1.3
         with:
           path: "."  
-          output_path: results-dir
-          enable_comments: true
+          output_path: myResults/
+          enable_comment: true
           
       - run: |
           export LOG_LEVEL=DEBUG
          
       - name: display kics result
         run: |
-           cat results-dir.json
+           cat myResults/results.json
 
       #- name: Update Pull Request
        # uses: actions/github-script@0.9.0
