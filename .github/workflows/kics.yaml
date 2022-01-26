@@ -66,10 +66,10 @@ jobs:
         with:
           path: "."  
           output_path: myResults/
-          enable_comment: true
+          enable_comments: true
           
-      - run: |
-          export LOG_LEVEL=DEBUG
+      #- run: |
+         #export LOG_LEVEL=DEBUG
          
       - name: display kics result
         run: |
