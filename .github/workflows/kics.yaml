@@ -68,17 +68,18 @@ jobs:
       # -  name: 'install & scan plan file
        #    curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 
-     
+      - name: MKdir results-dir
+        run: mkdir -p results-dir
           
       - name: 'Test Plan (Kics)'
-        uses: checkmarx/kics-action@v1.3
+        uses: checkmarx/kics-action@latest
         with:
           path: "."  
-          enable_comment: true
+          output_path: results-dir
          
-     # - name: display kics result
-      #  run: |
-       #    cat myResults/results.json
+      - name: display kics result
+        run: |
+           cat results-dir/results.json
 
       #- name: Update Pull Request
        # uses: actions/github-script@0.9.0
