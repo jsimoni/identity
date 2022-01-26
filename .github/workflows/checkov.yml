@@ -66,6 +66,7 @@ jobs:
          cat plans/testing/global/plan.json
        
       -  run: |
+           pip install checkov
            checkov -d .
      
           
