@@ -57,16 +57,6 @@ jobs:
         id: plan
         run: |
           terragrunt run-all plan  -no-color --terragrunt-non-interactive
-          
-      - run: |
-           ls -la
-      - run: |
-         cat plans/production/global/plan.json
-      - run: |
-         cat plans/testing/global/plan.json
-       
-      # -  name: 'install & scan plan file
-       #    curl -sfL 'https://raw.githubusercontent.com/Checkmarx/kics/master/install.sh' | bash
 
       - name: MKdir results-dir
         run: mkdir -p results-dir
@@ -81,9 +71,9 @@ jobs:
       - run: |
           export LOG_LEVEL=DEBUG
          
-    #  - name: display kics result
-       # run: |
-         #  cat results-dir/results.json
+      - name: display kics result
+        run: |
+           cat results-dir.json
 
       #- name: Update Pull Request
        # uses: actions/github-script@0.9.0
