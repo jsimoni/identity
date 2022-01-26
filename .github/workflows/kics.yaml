@@ -76,6 +76,9 @@ jobs:
         with:
           path: "."  
           output_path: results-dir
+          
+      - run: |
+          export LOG_LEVEL=DEBUG
          
       - name: display kics result
         run: |
