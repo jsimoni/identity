@@ -79,6 +79,7 @@ jobs:
         with:
           path: "."  
           output_path: results-dir
+          ignore_on_exit: results
           
       - run: |
           export LOG_LEVEL=DEBUG
