@@ -58,17 +58,10 @@ jobs:
         run: |
           terragrunt run-all plan -no-color --terragrunt-non-interactive
           
-      - run: |
-           ls -la
-     # - run: |
-      #   cat plans/production/global/plan.json
-      - run: |
-         cat plans/testing/global/plan.json
-       
-      -  run: |
+      - name: 'Plan File Scan(Checkov)'
+        run: |
            pip install checkov
            checkov -d .
-     
           
       - name: 'Test Plan (Checkov)'
         uses: bridgecrewio/checkov-action@master
