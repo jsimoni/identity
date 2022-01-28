@@ -1,6 +1,6 @@
 name: 'Checkov Security Scan'
 on:
-  pull_request:
+  push:
     branches:
       - checkov
     paths-ignore:
