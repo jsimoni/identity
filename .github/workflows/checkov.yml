@@ -1,4 +1,4 @@
-name: 'Checkov Security Scan'
+name: 'Checkov Security Scan1'
 on:
   push:
     branches:
