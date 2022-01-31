@@ -63,7 +63,7 @@ jobs:
            pip install checkov
            checkov -d .
           
-      - name: 'Test Plan (Checkov)'
+      - name: 'Terraform Module Scan (Checkov)'
         uses: bridgecrewio/checkov-action@master
         with:
           directory: "."
