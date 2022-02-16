@@ -2,7 +2,7 @@ name: 'Checkov Security Scan1'
 on:
   pull_request:
      branches:
-       - working-test
+       - working-tes
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'v1.1.0'
