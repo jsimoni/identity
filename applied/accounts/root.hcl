@@ -1,7 +1,7 @@
 # https://www.bti360.com/creating-a-terraform-variable-hierarchy-with-terragrunt/
 
 #lock the version of terragrunt in order to require...allow updates to the revision
-terragrunt_version_constraint = "~> 0.35.20"
+terragrunt_version_constraint = "~> 0.36.1"
 
 locals {
   root_deployments_dir       = get_parent_terragrunt_dir()
