@@ -2,12 +2,15 @@ name: 'Checkov Security Scan1'
 on:
   pull_request:
      branches:
-       - master
+       - test
+  push:
+    branches:
+      - test
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'v1.1.0'
   tg_version: 'v0.36.0'
-  orchestration_role_arn: 'arn:aws:iam::940407795328:role/GitHubAction_Orchestration_Data'
+  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:
   id-token: write
