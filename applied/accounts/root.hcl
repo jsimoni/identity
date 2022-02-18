@@ -1,5 +1,8 @@
 # https://www.bti360.com/creating-a-terraform-variable-hierarchy-with-terragrunt/
 
+#lock the version of terragrunt in order to require...allow updates to the revision
+terragrunt_version_constraint = "~> 0.36.1"
+
 locals {
   root_deployments_dir       = get_parent_terragrunt_dir()
   relative_deployment_path   = path_relative_to_include()
@@ -60,9 +63,40 @@ terraform {
 EOF
 }
 
+######################################################################
+# HOW TO UPGRADE THE PROVIDER versions
+
+#make sure state matches current configuration BEFORE changing the provider versions
+#terragrunt run-all init
+#terragrunt run-all apply -refresh-only
+
+#update the versions.tf file below and then apply the new version
+#terragrunt run-all init -upgrade
+#terragrunt run-all plan -out=tfplan.binary
+#terragrunt run-all apply
+
+generate "versions" {
+  path = "versions.tf"
+  if_exists = "overwrite_terragrunt"
+  contents = <<EOF
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.72.0"
+    }
+  }
+
+  required_version = "~> 1.1.3"
+}
+EOF
+}
+######################################################################
+
+
 terraform {
   after_hook "after_hook_plan" {
       commands     = ["plan"]
-      execute      = ["sh", "-c", "terraform show -json tfplan.binary > ${get_parent_terragrunt_dir()}/plan.json"]
+      execute      = ["sh", "-c", "mkdir -p ${get_parent_terragrunt_dir()}/plans/${path_relative_to_include()}; terraform show -json tfplan.binary > ${get_parent_terragrunt_dir()}/plans/${path_relative_to_include()}/plan.json"]
   }
 }

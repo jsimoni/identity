@@ -3,12 +3,14 @@ on:
   push:
     branches:
       - master
-#    paths-ignore:
+    paths-ignore:
+      - '**.md'
 #      - '.github/**'
   pull_request:
     branches:
       - master
-#    paths-ignore:
+    paths-ignore:
+      - '**.md'
 #      - '.github/**'
 
 # based on https://learn.hashicorp.com/tutorials/terraform/github-actions
@@ -16,7 +18,7 @@ on:
 env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
-  tg_version: 'v0.35.13'
+  tg_version: 'latest'
   orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
 
 permissions:

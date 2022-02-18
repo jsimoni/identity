@@ -1,0 +1,27 @@
+name: 'KICS'
+on:
+  workflow_call:
+
+# permissions:
+#   id-token: write
+#   contents: read
+#   pull-requests: write
+
+jobs:
+  Kics:
+    name: 'Static Analysis of Code'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v2
+
+      - name: KICS Github Action
+        uses: Checkmarx/kics-github-action@v1.4
+        with:
+          # path to file or directory to scan
+          path: './modules/'
+          # file path to store result in json format
+          output_path: # optional
+          # defines which non-zero exit codes should be ignored
+          ignore_on_exit: results
