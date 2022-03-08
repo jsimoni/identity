@@ -18,7 +18,8 @@ env:
   tf_working_dir: './applied/accounts/'
   tf_version: 'latest'
   tg_version: 'v0.35.13'
-  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
+#  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
+  orchestration_role_arn: 'arn:aws:iam::119662755212:role/awssso_orchestration_role'
 
 permissions:
   id-token: write
@@ -67,11 +68,11 @@ jobs:
           terragrunt run-all init --terragrunt-non-interactive
           terragrunt run-all validate --terragrunt-non-interactive
 
-      - name: Plan
-        id: plan
-        if: github.event_name == 'pull_request'
-        run: |
-          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
+#      - name: Plan
+#        id: plan
+#        if: github.event_name == 'pull_request'
+#        run: |
+#          terragrunt run-all plan -out=tfplan.binary -no-color --terragrunt-non-interactive
 
       # - run: |
       #     ls -la
@@ -122,7 +123,7 @@ jobs:
             })
 
 
-      - name: Apply
-        if: github.event_name == 'push'
-        run: |
-          terragrunt run-all apply --terragrunt-non-interactive
+#      - name: Apply
+#        if: github.event_name == 'push'
+#        run: |
+#          terragrunt run-all apply --terragrunt-non-interactive
