@@ -19,7 +19,7 @@ env:
   tf_version: 'latest'
   tg_version: 'v0.35.13'
 #  orchestration_role_arn: 'arn:aws:iam::940407795328:role/github_orchestration_role'
-  orchestration_role_arn: 'arn:aws:iam::119662755212:role/awssso_orchestration_role'
+  orchestration_role_arn: 'arn:aws:iam::166718758981:role/awssso_orchestration_role'
 
 permissions:
   id-token: write
