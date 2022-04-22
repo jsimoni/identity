@@ -1,5 +1,5 @@
 name: 'Terraform GitHub Actions - OLD'
-on:
+# on:
 #   push:
 #     branches:
 #       - master

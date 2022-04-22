@@ -10,7 +10,7 @@ resource "aws_iam_policy" "policy" {
       "Action": [
         "s3:ListAllMyBuckets"
       ],
-      "Effect": "Allow",
+      "Effect": "Deny",
       "Resource": "*"
     }
   ]
