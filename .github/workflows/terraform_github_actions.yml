@@ -7,7 +7,7 @@ on:
 #       - '.github/**'
    pull_request:
      branches:
-       - masterxxxx
+       - master
 #     paths-ignore:
 #       - '.github/**'
 
@@ -62,6 +62,7 @@ jobs:
           tf_actions_comment: true
 
       - name: 'Terragrunt Plan'
+        id: plan
         uses: the-commons-project/terragrunt-github-actions@master
         with:
           tf_actions_version: ${{ env.tf_version }}
@@ -71,20 +72,22 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_comment: true
 
-#      - name: 'Checkov'
-#        uses: bridgecrewio/checkov-action@master
-#        with:
-#          directory: plans
-#          quiet: true # optional: display only failed checks
-#          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-#          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
-
-      - name: 'Terragrunt Apply'
-        uses: the-commons-project/terragrunt-github-actions@master
+      - name: Post Plan
+        uses: robburger/terraform-pr-commenter@v1.5.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPAND_SUMMARY_DETAILS: 'false' # Override global environment variable; expand details just for this step
         with:
-          tf_actions_version: ${{ env.tf_version }}
-          tg_actions_version: ${{ env.tg_version }}
-          tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: ${{ env.tf_working_dir }}
-          tf_actions_comment: true
+          commenter_type: plan
+          commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
+          commenter_exitcode: ${{ steps.plan.outputs.exitcode }}
+
+      # - name: 'Terragrunt Apply'
+      #   uses: the-commons-project/terragrunt-github-actions@master
+      #   with:
+      #     tf_actions_version: ${{ env.tf_version }}
+      #     tg_actions_version: ${{ env.tg_version }}
+      #     tf_actions_binary: "terragrunt run-all --terragrunt-non-interactive"
+      #     tf_actions_subcommand: 'apply'
+      #     tf_actions_working_dir: ${{ env.tf_working_dir }}
+      #     tf_actions_comment: true
